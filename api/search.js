@@ -3,7 +3,6 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // CORS preflight (obligatoire)
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -20,8 +19,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     return res.status(200).json(data);
-
-  } catch (error) {
+  } catch (e) {
     return res.status(500).json({ error: "Deezer search error" });
   }
 }
